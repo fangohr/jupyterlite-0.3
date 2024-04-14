@@ -1,0 +1,707 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>11. Python shells &#8212; Introduction to Python for Computational Science and Engineering</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/myfile.css?v=b749d676" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script kind="utterances">
+
+    var commentsRunWhenDOMLoaded = cb => {
+    if (document.readyState != 'loading') {
+        cb()
+    } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', cb)
+    } else {
+        document.attachEvent('onreadystatechange', function() {
+        if (document.readyState == 'complete') cb()
+        })
+    }
+}
+
+var addUtterances = () => {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://utteranc.es/client.js";
+    script.async = "async";
+
+    script.setAttribute("repo", "fangohr/introduction-to-python-for-computational-science-and-engineering");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", "github-light");
+    script.setAttribute("label", "💬 utterances");
+    script.setAttribute("crossorigin", "anonymous");
+
+    sections = document.querySelectorAll("div.section");
+    if (sections !== null) {
+        section = sections[sections.length-1];
+        section.appendChild(script);
+    }
+}
+commentsRunWhenDOMLoaded(addUtterances);
+</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '11-python-shells';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="12. Symbolic computation" href="12-symbolic-computation.html" />
+    <link rel="prev" title="10. From Matlab to Python" href="10-matlab-to-python.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="opening.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Introduction to Python for Computational Science and Engineering - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Introduction to Python for Computational Science and Engineering - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="opening.html">
+                    Python for Computational Science and Engineering
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-powerful-calculator.html">2. A powerful calculator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-data-types-structures.html">3. Data Types and Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-introspection.html">4. Introspection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-input-output.html">5. Input and Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-control-flow.html">6. Control Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-functions-modules.html">7. Functions and modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08-functional-tools.html">8. Functional tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-common-tasks.html">9. Common tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10-matlab-to-python.html">10. From Matlab to Python</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">11. Python shells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12-symbolic-computation.html">12. Symbolic computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13-numeric-computation.html">13. Numerical Computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14-numpy.html">14. Numerical Python (numpy): arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15-visualising-data.html">15. Visualising Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16-scipy.html">16. Numerical Methods using Python (scipy)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17-pandas.html">17. Pandas - Data Science with Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18-environments.html">18. Python packages and environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19-next-steps.html">19. Where to go from here?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="99-changes.html">20. Change history</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/fangohr/introduction-to-python-for-computational-science-and-engineering/master?urlpath=tree/book/11-python-shells.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/fangohr/introduction-to-python-for-computational-science-and-engineering" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/fangohr/introduction-to-python-for-computational-science-and-engineering/issues/new?title=Issue%20on%20page%20%2F11-python-shells.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/11-python-shells.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Python shells</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#idle">11.1. IDLE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-command-line">11.2. Python (command line)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-python-ipython">11.3. Interactive Python (IPython)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ipython-console">11.3.1. IPython console</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook">11.3.2. Jupyter Notebook</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder">11.4. Spyder</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#editors">11.5. Editors</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="python-shells">
+<h1><span class="section-number">11. </span>Python shells<a class="headerlink" href="#python-shells" title="Link to this heading">#</a></h1>
+<section id="idle">
+<h2><span class="section-number">11.1. </span>IDLE<a class="headerlink" href="#idle" title="Link to this heading">#</a></h2>
+<p>IDLE comes with every Python distribution and is a useful tool for everyday programming. Its editor provides syntax highlighting.</p>
+<p>There are two reasons why you might want to use another Python shell, for example:</p>
+<ul class="simple">
+<li><p>While working with the Python prompt, you like auto-completion of variable names, filenames and commands. In that case <em>IPython</em> is your tool of choice (see below). IPython does not provide an editor, but you can carry on using the IDLE editor to edit files, or any other editor you like.</p></li>
+</ul>
+<p>IPython provides a number of nice features for the more experienced Python programmer, including convenient profiling of code (see <a class="reference external" href="https://ipython.org/">https://ipython.org/</a>).</p>
+<p>Recently, some auto-completion has been added to Idle as well (press tab after having typed the first few letters of object names and keywords).</p>
+</section>
+<section id="python-command-line">
+<h2><span class="section-number">11.2. </span>Python (command line)<a class="headerlink" href="#python-command-line" title="Link to this heading">#</a></h2>
+<p>This is the most basic face of the Python shell. It is very similar to the Python prompt in IDLE but there are no menus to click on and no facilities to edit files.</p>
+</section>
+<section id="interactive-python-ipython">
+<h2><span class="section-number">11.3. </span>Interactive Python (IPython)<a class="headerlink" href="#interactive-python-ipython" title="Link to this heading">#</a></h2>
+<section id="ipython-console">
+<h3><span class="section-number">11.3.1. </span>IPython console<a class="headerlink" href="#ipython-console" title="Link to this heading">#</a></h3>
+<p>IPython is an improved version of the Python command line. It is a valuable tool and worth exploring it’s capabilities (see <a class="reference external" href="https://ipython.org/ipython-doc/stable/interactive/qtconsole.html">https://ipython.org/ipython-doc/stable/interactive/qtconsole.html</a>)</p>
+<p>You will find the following features very useful:</p>
+<ul class="simple">
+<li><p>auto completion
+Suppose you want to type <span><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">range(10)</span></code></span>. Instead of typing all the letters, just type <span><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">ra</span></code></span> and the press the “Tab” key. Ipython will now show all the possible commands (and variable names) that start with <span><code class="docutils literal notranslate"><span class="pre">ra</span></code></span>. If you type a third letter, here <span><code class="docutils literal notranslate"><span class="pre">n</span></code></span> and press “Tab” again, Ipython will auto complete and append <span><code class="docutils literal notranslate"><span class="pre">ge</span></code></span> automatically.
+This works also for variable names and modules.</p></li>
+<li><p>To obtain help on a command, we can use Python’s help command. For example: <span><code class="docutils literal notranslate"><span class="pre">help(range)</span></code></span>. Ipython provides a shortcut. To achieve the same, it is sufficient to just type the command followed by a question mark: <span><code class="docutils literal notranslate"><span class="pre">range?</span></code></span></p></li>
+<li><p>You can relatively easily navigate directories on your computer. For example,</p>
+<ul>
+<li><p><span><code class="docutils literal notranslate"><span class="pre">!dir</span></code></span> lists the content of the current directory (same as <span><code class="docutils literal notranslate"><span class="pre">ls</span></code></span>)</p></li>
+<li><p><span><code class="docutils literal notranslate"><span class="pre">pwd</span></code></span> shows the current working directory</p></li>
+<li><p><span><code class="docutils literal notranslate"><span class="pre">cd</span></code></span> allows to change directories</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>In general, using an exclamation mark before the command will pass the command to the shell (not to the Python interpreter).</p></li>
+<li><p>You can execute Python programs from ipython using <span><code class="docutils literal notranslate"><span class="pre">%run&lt;/span&gt;.</span> <span class="pre">Suppose</span> <span class="pre">you</span> <span class="pre">have</span> <span class="pre">a</span> <span class="pre">file</span> <span class="pre">`hello.py`</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">current</span> <span class="pre">directory.</span> <span class="pre">You</span> <span class="pre">can</span> <span class="pre">then</span> <span class="pre">execute</span> <span class="pre">it</span> <span class="pre">by</span> <span class="pre">typing:</span> <span class="pre">&lt;span&gt;</span></code>%run hello</span></p></li>
+</ul>
+<p>Note that this differs from executing a python program in IDLE: IDLE restarts the Python interpreter session and thus deletes all existing objects before the execution starts. This is not the case with the <span><code class="docutils literal notranslate"><span class="pre">run</span></code></span> command in ipython (and neither when executing chunks of Python code from Emacs using the Emacs Python mode). In particular this can be very useful if one needs to setup a few objects which are needed to test the code one is working on. Using ipython’s <span><code class="docutils literal notranslate"><span class="pre">run</span></code></span> or Emacs instead of IDLE allows to keep these objects in the interpreter session and to only update the function/classes/… etc that are being developed.</p>
+<ul class="simple">
+<li><p>allows multi-line editing of command history</p></li>
+<li><p>provides on-the-fly syntax highlighting</p></li>
+<li><p>displays doc-strings on-the-fly</p></li>
+<li><p>can inline matplotlib figures (activate mode with if started with <code class="docutils literal notranslate"><span class="pre">%matplotlib</span> <span class="pre">inline</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%load</span></code> loads file from disk or form URL for editing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%timeit</span></code> measures execution time for a given statement</p></li>
+<li><p>…and a lot more.</p></li>
+<li><p>Read more at <a class="reference external" href="https://ipython.org/ipython-doc/dev/interactive/qtconsole.html">https://ipython.org/ipython-doc/dev/interactive/qtconsole.html</a></p></li>
+</ul>
+<p>If you have access to this shell, you may want to consider it as your default Python prompt.</p>
+</section>
+<section id="jupyter-notebook">
+<h3><span class="section-number">11.3.2. </span>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Link to this heading">#</a></h3>
+<p>The Jupyter Notebook (formerly IPython Notebook) allows you to execute, store, load, re-execute a sequence of Python commands, and to include explanatory text, images and other media in between.</p>
+<p>This is a recent and exciting development that has the potential to develop into a tool of great significance, for example for</p>
+<ul class="simple">
+<li><p>documenting calculations and data processing</p></li>
+<li><p>support learning and teaching of</p>
+<ul>
+<li><p>Python itself</p></li>
+<li><p>statistical methods</p></li>
+<li><p>general data post-processing</p></li>
+<li><p>…</p></li>
+</ul>
+</li>
+<li><p>documentation new code</p></li>
+<li><p>automatic regression testing by re-running ipython notebook and comparing stored output with computed output</p></li>
+</ul>
+<p><strong>Further reading</strong></p>
+<ul class="simple">
+<li><p>Jupyter Notebook (<a class="reference external" href="https://jupyter-notebook.readthedocs.io/en/latest/">https://jupyter-notebook.readthedocs.io/en/latest/</a>).</p></li>
+<li><p>IPython (<a class="reference external" href="https://ipython.org">https://ipython.org</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="spyder">
+<h2><span class="section-number">11.4. </span>Spyder<a class="headerlink" href="#spyder" title="Link to this heading">#</a></h2>
+<p>Spyder is the Scientific PYthon Development EnviRonment: a powerful interactive development environment for the Python language with advanced editing, interactive testing, debugging and introspection features and a numerical computing environment thanks to the support of IPython (enhanced interactive Python interpreter) and popular Python libraries such as NumPy (linear algebra), SciPy (signal and image processing) or matplotlib (interactive 2D/3D plotting). See <a class="reference external" href="https://www.spyder-ide.org/">https://www.spyder-ide.org/</a> for more.</p>
+<p>Some important features of Spyder:</p>
+<ul class="simple">
+<li><p>Within Spyder, the IPython console is the default Python interpreter, and</p></li>
+<li><p>code in the editor can be fully or partially be executed in this buffer.</p></li>
+<li><p>The editor supports automatic checking for Python erros using pyflakes, and</p></li>
+<li><p>the editor warns (if desired) if the code formatting deviates from the PEP8 style guide.</p></li>
+<li><p>The Ipython Debugger can be activated, and</p></li>
+<li><p>a profiler is provided.</p></li>
+<li><p>An object explorer shows documentation for functions, methods etc on the fly and a</p></li>
+<li><p>variable explorer displays names, size and values for numerical variables.</p></li>
+</ul>
+<p>Spyder is currently (as of 2014) on the way to develop into a powerful and robust multi-platform integrated environment for Python development, with particular emphasis on Python for scientific computing and engineering.</p>
+</section>
+<section id="editors">
+<h2><span class="section-number">11.5. </span>Editors<a class="headerlink" href="#editors" title="Link to this heading">#</a></h2>
+<p>All major editors that are used for programming, provide Python modes (such as Emacs, Vim, Sublime Text), some Integrated Development Enviroments (IDEs) come with their own editor (Spyder, Eclipse). Which of these is best, is partly a matter of choice.</p>
+<p>For beginners, Spyder seems a sensible choice as it provides an IDE, allows execution of chunks of code in an interpreter session and is easy to pick up.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="10-matlab-to-python.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>From Matlab to Python</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="12-symbolic-computation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>Symbolic computation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#idle">11.1. IDLE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-command-line">11.2. Python (command line)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-python-ipython">11.3. Interactive Python (IPython)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ipython-console">11.3.1. IPython console</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook">11.3.2. Jupyter Notebook</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spyder">11.4. Spyder</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#editors">11.5. Editors</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Hans Fangohr
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

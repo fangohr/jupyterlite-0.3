@@ -1,0 +1,1604 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>15. Visualising Data &#8212; Introduction to Python for Computational Science and Engineering</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/myfile.css?v=b749d676" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script kind="utterances">
+
+    var commentsRunWhenDOMLoaded = cb => {
+    if (document.readyState != 'loading') {
+        cb()
+    } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', cb)
+    } else {
+        document.attachEvent('onreadystatechange', function() {
+        if (document.readyState == 'complete') cb()
+        })
+    }
+}
+
+var addUtterances = () => {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://utteranc.es/client.js";
+    script.async = "async";
+
+    script.setAttribute("repo", "fangohr/introduction-to-python-for-computational-science-and-engineering");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", "github-light");
+    script.setAttribute("label", "💬 utterances");
+    script.setAttribute("crossorigin", "anonymous");
+
+    sections = document.querySelectorAll("div.section");
+    if (sections !== null) {
+        section = sections[sections.length-1];
+        section.appendChild(script);
+    }
+}
+commentsRunWhenDOMLoaded(addUtterances);
+</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '15-visualising-data';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="16. Numerical Methods using Python (scipy)" href="16-scipy.html" />
+    <link rel="prev" title="14. Numerical Python (numpy): arrays" href="14-numpy.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="opening.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Introduction to Python for Computational Science and Engineering - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Introduction to Python for Computational Science and Engineering - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="opening.html">
+                    Python for Computational Science and Engineering
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-powerful-calculator.html">2. A powerful calculator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-data-types-structures.html">3. Data Types and Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-introspection.html">4. Introspection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-input-output.html">5. Input and Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-control-flow.html">6. Control Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-functions-modules.html">7. Functions and modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08-functional-tools.html">8. Functional tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-common-tasks.html">9. Common tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10-matlab-to-python.html">10. From Matlab to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11-python-shells.html">11. Python shells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12-symbolic-computation.html">12. Symbolic computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13-numeric-computation.html">13. Numerical Computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14-numpy.html">14. Numerical Python (numpy): arrays</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">15. Visualising Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16-scipy.html">16. Numerical Methods using Python (scipy)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17-pandas.html">17. Pandas - Data Science with Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18-environments.html">18. Python packages and environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19-next-steps.html">19. Where to go from here?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="99-changes.html">20. Change history</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/fangohr/introduction-to-python-for-computational-science-and-engineering/master?urlpath=tree/book/15-visualising-data.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/fangohr/introduction-to-python-for-computational-science-and-engineering" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/fangohr/introduction-to-python-for-computational-science-and-engineering/issues/new?title=Issue%20on%20page%20%2F15-visualising-data.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/15-visualising-data.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Visualising Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib-plotting-y-f-x-and-a-bit-more">15.1. Matplotlib – plotting y=f(x), (and a bit more)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib-and-pylab">15.1.1. Matplotlib and Pylab</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-example">15.1.2. First example</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pyplot-interface">15.1.2.1. The pyplot interface</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-import-matplotlib-pylab-pyplot-numpy-and-all-that">15.1.3. How to import matplotlib, pylab, pyplot, numpy and all that</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pylab-interface">15.1.3.1. The Pylab interface</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ipythons-inline-mode">15.1.4. IPython’s inline mode</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-the-figure-to-a-file">15.1.5. Saving the figure to a file</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">15.2. The pylab interface</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tuning-your-plot">15.2.1. Fine tuning your plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-more-than-one-curve">15.2.2. Plotting more than one curve</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#two-or-more-curves-in-one-graph">15.2.2.1. Two (or more) curves in one graph</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#two-or-more-graphs-in-one-figure-window">15.2.2.2. Two (or more graphs) in one figure window</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#two-or-more-figure-windows">15.2.2.3. Two (or more) figure windows</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-mode">15.2.3. Interactive mode</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-matplotlib-pyplot-interface">15.3. The matplotlib.pyplot interface</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#histograms">15.3.1. Histograms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualising-matrix-data">15.3.2. Visualising matrix data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-colour-map-to-choose">15.3.3. What colour map to choose?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plots-of-z-f-x-y-and-other-features-of-matplotlib">15.3.4. Plots of <em>z</em> = <em>f</em>(<em>x</em>, <em>y</em>) and other features of Matplotlib</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-learn-how-to-use-matplotlib">15.3.5. How to learn how to use Matplotlib?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visual-python">15.4. Visual Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics-rotating-and-zooming">15.4.1. Basics, rotating and zooming</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-the-frame-rate-for-animations">15.4.2. Setting the frame rate for animations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tracking-trajectories">15.4.3. Tracking trajectories</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connecting-objects-cylinders-springs">15.4.4. Connecting objects (Cylinders, springs, …)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-vision">15.4.5. 3d vision</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualising-higher-dimensional-data-vtk">15.5. Visualising higher dimensional data (VTK)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mayavi-paraview-visit">15.5.1. Mayavi, Paraview, Visit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-vtk-files-from-python-pyvtk">15.5.2. Writing vtk files from Python (pyvtk)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-tools-and-developments">15.6. Further tools and developments</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exploiting-self-describing-data-for-visualisation">15.6.1. Exploiting self-describing data for visualisation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-future-of-data-visualisation">15.6.2. The future of data visualisation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tuning-matplotlib-plots-that-are-generated-by-high-level-frame-works">15.6.3. Fine-tuning matplotlib plots that are generated by high level frame works</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebooks">15.7. Jupyter Notebooks</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="visualising-data">
+<h1><span class="section-number">15. </span>Visualising Data<a class="headerlink" href="#visualising-data" title="Link to this heading">#</a></h1>
+<p>The purpose of scientific computation is insight not numbers: To understand the meaning of the (many) numbers we compute, we often need postprocessing, statistical analysis and graphical visualisation of our data. The following sections describe</p>
+<ul class="simple">
+<li><p>Matplotlib/Pylab — a tool to generate high quality graphs of the type <em>y</em> = <em>f</em>(<em>x</em>) (and a bit more)</p>
+<ul>
+<li><p>the <code class="docutils literal notranslate"><span class="pre">pylab</span></code> interface</p></li>
+<li><p>the <code class="docutils literal notranslate"><span class="pre">pyplot</span></code> interface</p></li>
+</ul>
+</li>
+</ul>
+<p>We also touch on:</p>
+<ul class="simple">
+<li><p>Visual Python — a tool to quickly generate animations of time dependent processes taking place in 3d space.</p></li>
+<li><p>Tools to store and visualise vtk files</p></li>
+</ul>
+<p>We close with a short outlook on</p>
+<ul class="simple">
+<li><p>Further tools and developments discussing other tools and emerging approaches for data visualisation and analysis.</p></li>
+</ul>
+<section id="matplotlib-plotting-y-f-x-and-a-bit-more">
+<h2><span class="section-number">15.1. </span>Matplotlib – plotting y=f(x), (and a bit more)<a class="headerlink" href="#matplotlib-plotting-y-f-x-and-a-bit-more" title="Link to this heading">#</a></h2>
+<p>The Python library <em>Matplotlib</em> is a python 2D plotting library which produces publication quality figures in a variety of hardcopy formats and interactive environments. Matplotlib tries to make easy things easy and hard things possible. You can generate plots, histograms, power spectra, bar charts, errorcharts, scatterplots, etc, with just a few lines of code.</p>
+<p>For more detailed information, check these links</p>
+<ul class="simple">
+<li><p>A very nice introduction in the object oriented Matplotlib interface, and summary of all important ways of changing style, figure size, linewidth, etc. This is a useful reference:
+<a class="github reference external" href="https://github.com/jrjohansson/scientific-python-lectures/blob/master/Lecture-4-Matplotlib.ipynb">jrjohansson/scientific-python-lectures</a></p></li>
+<li><p><a class="reference external" href="https://matplotlib.org/stable/tutorials/index">Matplotlib tutorial</a></p></li>
+<li><p><a class="reference external" href="https://matplotlib.org">Matplotlib home page</a></p></li>
+<li><p>Extended thumbnail gallery of examples https://matplotlib.org/stable/gallery/index.html</p></li>
+</ul>
+<section id="matplotlib-and-pylab">
+<h3><span class="section-number">15.1.1. </span>Matplotlib and Pylab<a class="headerlink" href="#matplotlib-and-pylab" title="Link to this heading">#</a></h3>
+<p>The Matplotlib package provides <em>an object oriented plotting library</em> under the name space <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">pylab</span></code> interface is provided through the Matplotlib package. Internally it uses <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code> functionality but imitates the (state-driven) Matlab plotting interface.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">pylab</span></code> interface is slightly more convenient to use for simple plots, and <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code> gives far more detailed control over how plots are created. If you routinely need to produce figures, we suggest to learn about the object oriented <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code> interface (instead of the <code class="docutils literal notranslate"><span class="pre">pylab</span></code> interface).</p>
+<p>This chapter focusses on the Pylab interface, but also provides examples for the object-oriented <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code> interface.</p>
+<p>An excellent introduction and overview of the <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code> plotting interface is available in <a class="github reference external" href="https://github.com/jrjohansson/scientific-python-lectures/blob/master/Lecture-4-Matplotlib.ipynb">jrjohansson/scientific-python-lectures</a>.</p>
+<p>For the purpose of this book and the <a class="reference external" href="https://jupyterbook.org">Jupyterbook package</a>, we use some settings to create a svg file for the html version of the book, and a high-resolution png file for the pdf version:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="c1"># settings for jupyter book: svg for html version, high-resolution png for pdf</span>
+<span class="kn">import</span> <span class="nn">matplotlib_inline</span>
+<span class="n">matplotlib_inline</span><span class="o">.</span><span class="n">backend_inline</span><span class="o">.</span><span class="n">set_matplotlib_formats</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">,</span> <span class="s1">&#39;png&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">400</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="first-example">
+<h3><span class="section-number">15.1.2. </span>First example<a class="headerlink" href="#first-example" title="Link to this heading">#</a></h3>
+<section id="the-pyplot-interface">
+<h4><span class="section-number">15.1.2.1. </span>The pyplot interface<a class="headerlink" href="#the-pyplot-interface" title="Link to this heading">#</a></h4>
+<p>The recommended way of using Matplotlib in a simple example is shown here:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># example 1 a</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>                  <span class="c1"># get access to fast arrays</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>     <span class="c1"># the plotting functions   </span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">3.14</span><span class="p">,</span> <span class="mf">3.14</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>    <span class="c1"># create x-data </span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>                       <span class="c1"># compute y-data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>                      <span class="c1"># create plot</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fa144ea11d0&gt;]
+</pre></div>
+</div>
+<img alt="_images/888574ac7c642e8ecb79d0334f62e28082445fdd87dbfd0daab099d767b807f0.svg" src="_images/888574ac7c642e8ecb79d0334f62e28082445fdd87dbfd0daab099d767b807f0.svg" /></div>
+</div>
+</section>
+</section>
+<section id="how-to-import-matplotlib-pylab-pyplot-numpy-and-all-that">
+<h3><span class="section-number">15.1.3. </span>How to import matplotlib, pylab, pyplot, numpy and all that<a class="headerlink" href="#how-to-import-matplotlib-pylab-pyplot-numpy-and-all-that" title="Link to this heading">#</a></h3>
+<p>The submodule <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code> provides an object oriented interface to the plotting library. Many of the examples in the matplotlib documentation follow the import convention to import <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code> as <code class="docutils literal notranslate"><span class="pre">plt</span></code> and <code class="docutils literal notranslate"><span class="pre">numpy</span></code> as <code class="docutils literal notranslate"><span class="pre">np</span></code>. It is of the user’s decision whether to import the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> library under the name <code class="docutils literal notranslate"><span class="pre">np</span></code> (as often done in matplotlib examples) or <code class="docutils literal notranslate"><span class="pre">N</span></code> as occasionally done in this text (and in the early days when the predecessor of numpy was called “Numeric”) or any other name you like. Similarly, it is a matter of taste whether the plotting submodule (<code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code>) is imported as <code class="docutils literal notranslate"><span class="pre">plt</span></code> as is done in the matplotlib documentation or <code class="docutils literal notranslate"><span class="pre">plot</span></code> (which could be argued is slightly clearer) etc.</p>
+<p>As always a balance has to be struck between personal preferences and consistency with common practice in choosing these name. Consistency with common use is more important if the code is likely to be used by others or published.</p>
+<section id="the-pylab-interface">
+<h4><span class="section-number">15.1.3.1. </span>The Pylab interface<a class="headerlink" href="#the-pylab-interface" title="Link to this heading">#</a></h4>
+<p>We introduce the <code class="docutils literal notranslate"><span class="pre">pylab</span></code> interface by translating the example 1a above to the following example 1b (which is identical in functionality to the example 1a and will create the same plot):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># example 1b</span>
+<span class="kn">import</span> <span class="nn">pylab</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span> <span class="p">(</span><span class="o">-</span><span class="mf">3.14</span><span class="p">,</span> <span class="mf">3.14</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">pylab</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fa144e45050&gt;]
+</pre></div>
+</div>
+<img alt="_images/3401e965f8e9e4bf392ce36bc4e163c3c3ad3a4091576e2f573b6262cdbe40f5.svg" src="_images/3401e965f8e9e4bf392ce36bc4e163c3c3ad3a4091576e2f573b6262cdbe40f5.svg" /></div>
+</div>
+<p>Plotting nearly always needs arrays of numerical data and it is for this reason that the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> module is used a lot: it provides fast and memory efficient array handling for Python (see <a class="reference internal" href="14-numpy.html"><span class="std std-doc">chapter 14</span></a>). The <code class="docutils literal notranslate"><span class="pre">pylab</span></code> interface has taken this a step further and automatically imports all objects from <code class="docutils literal notranslate"><span class="pre">numpy</span></code> into the <code class="docutils literal notranslate"><span class="pre">pylab</span></code> name space:</p>
+<p>Because the <code class="docutils literal notranslate"><span class="pre">numpy.arange</span></code> and <code class="docutils literal notranslate"><span class="pre">numpy.sin</span></code> objects have already been imported into the <code class="docutils literal notranslate"><span class="pre">pylab</span></code> namespace, we could also write it as example 1c:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># example 1c</span>
+<span class="kn">import</span> <span class="nn">pylab</span> <span class="k">as</span> <span class="nn">p</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">3.14</span><span class="p">,</span> <span class="mf">3.14</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fa141a835d0&gt;]
+</pre></div>
+</div>
+<img alt="_images/80dfbe5329c7137ad6a74771a556a0e59d3166901300998f38c41ea5f2dd89f3.svg" src="_images/80dfbe5329c7137ad6a74771a556a0e59d3166901300998f38c41ea5f2dd89f3.svg" /></div>
+</div>
+<p>If we really want to cut down on characters to type, we could also important all the objects (<code class="docutils literal notranslate"><span class="pre">*</span></code>) from the <code class="docutils literal notranslate"><span class="pre">pylab</span></code> convenience module into our current namespace, and rewrite the code as example 1d:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># example 1 d</span>
+<span class="kn">from</span> <span class="nn">pylab</span> <span class="kn">import</span> <span class="o">*</span>  <span class="c1"># not generally recommended</span>
+                     <span class="c1"># okay for interactive testing</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">3.14</span><span class="p">,</span> <span class="mf">3.14</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/74f6c534cba75ce78be4e7f6b0b65d1f49f2f3ddf52adbaaec7cc6969a29993e.svg" src="_images/74f6c534cba75ce78be4e7f6b0b65d1f49f2f3ddf52adbaaec7cc6969a29993e.svg" /></div>
+</div>
+<p>This can be extremely convenient, but comes with a big health warning:</p>
+<ul class="simple">
+<li><p>While using <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">pylab</span> <span class="pre">import</span> <span class="pre">*</span></code> is acceptable at the command prompt to interactively create plots and analyse data, this should never be used in any plotting scripts.</p></li>
+<li><p>The pylab toplevel provides over 800 different objects which are all imported into the global name space when running <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">pylab</span> <span class="pre">import</span> <span class="pre">*</span></code>. This is not good practice, and could conflict with other objects that exist already or are created later.</p></li>
+<li><p>As a rule of thumb: do never use <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">somewhere</span> <span class="pre">import</span> <span class="pre">*</span></code> in programs we save. This may be okay at the command prompt for interactive data exploration.</p></li>
+</ul>
+</section>
+</section>
+<section id="ipythons-inline-mode">
+<h3><span class="section-number">15.1.4. </span>IPython’s inline mode<a class="headerlink" href="#ipythons-inline-mode" title="Link to this heading">#</a></h3>
+<p>Within the Jupyter Notebook or Qtconsole (see the <a class="reference internal" href="11-python-shells.html"><span class="std std-doc">Python shells notebook</span></a>) we can use the <code class="docutils literal notranslate"><span class="pre">%matplotlib</span> <span class="pre">inline</span></code> magic command to make further plots appear within our console or notebook. To force pop up windows instead, use <code class="docutils literal notranslate"><span class="pre">%matplotlib</span> <span class="pre">qt</span></code>.</p>
+<p>If you enjoy the <code class="docutils literal notranslate"><span class="pre">pylab</span></code> interface, then you maybe interested in the <code class="docutils literal notranslate"><span class="pre">%pylab</span></code> magic, which will not only switch to inline plotting but also automatically execute <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">pylab</span> <span class="pre">import</span> <span class="pre">*</span></code>.</p>
+</section>
+<section id="saving-the-figure-to-a-file">
+<h3><span class="section-number">15.1.5. </span>Saving the figure to a file<a class="headerlink" href="#saving-the-figure-to-a-file" title="Link to this heading">#</a></h3>
+<p>Once you have created the figure (using the <code class="docutils literal notranslate"><span class="pre">plot</span></code> command) and added any labels, legends etc, you have two options to save the plot.</p>
+<ol class="arabic simple">
+<li><p>You can display the figure (using <code class="docutils literal notranslate"><span class="pre">show</span></code>) and <em>interactively</em> save it by clicking on the disk icon. (This does not work with inline plots as the icons are not available.)</p></li>
+<li><p>You can (without displaying the figure) save it directly from your Python code. The command to use is <code class="docutils literal notranslate"><span class="pre">savefig</span></code>. The format is determined by the extension of the file name you provide. Here is an example (<code class="docutils literal notranslate"><span class="pre">pylabsavefig.py</span></code>) which saves a figure into different files.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># saving figure files with the pylab interface</span>
+<span class="kn">import</span> <span class="nn">pylab</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">3.14</span><span class="p">,</span> <span class="mf">3.14</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">pylab</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;sin(x)&#39;</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;myplot.png&#39;</span><span class="p">)</span>  <span class="c1"># saves png file</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;myplot.svg&#39;</span><span class="p">)</span>  <span class="c1"># saves svg file</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;myplot.eps&#39;</span><span class="p">)</span>  <span class="c1"># saves svg file</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;myplot.pdf&#39;</span><span class="p">)</span>  <span class="c1"># saves pdf file</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A note on file formats:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">pdf</span></code>, <code class="docutils literal notranslate"><span class="pre">eps</span></code> and <code class="docutils literal notranslate"><span class="pre">svg</span></code> file formats are vector file formats which means that one can zoom into the image without loosing quality (lines will still be sharp). File formats such as <code class="docutils literal notranslate"><span class="pre">png</span></code> (and <code class="docutils literal notranslate"><span class="pre">jpg</span></code>, <code class="docutils literal notranslate"><span class="pre">gif</span></code>, <code class="docutils literal notranslate"><span class="pre">tif</span></code>, <code class="docutils literal notranslate"><span class="pre">bmp</span></code>) save the image in form of a bitmap (i.e. a matrix of colour values) and will appear blurry or pixelated when zooming in (or when printed in high resolution).</p>
+<p>Accordingly, choose a vector file format where you can, and use the bitmap (<code class="docutils literal notranslate"><span class="pre">png</span></code> for example) if there are no other options. Choose the <code class="docutils literal notranslate"><span class="pre">eps</span></code> or <code class="docutils literal notranslate"><span class="pre">pdf</span></code> file format if you plan to include the figure in a Latex document – depending on whether you want to compile it using <code class="docutils literal notranslate"><span class="pre">latex</span></code> (needs <code class="docutils literal notranslate"><span class="pre">eps</span></code>) or pdflatex (can use <code class="docutils literal notranslate"><span class="pre">pdf</span></code> [better] or <code class="docutils literal notranslate"><span class="pre">png</span></code>). If the version of MS Word (or other text processing software you use) can handle <code class="docutils literal notranslate"><span class="pre">pdf</span></code> files, it is better to use <code class="docutils literal notranslate"><span class="pre">pdf</span></code> than <code class="docutils literal notranslate"><span class="pre">png</span></code> for that.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># saving figure files with the pyplot interface</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">3.14</span><span class="p">,</span> <span class="mf">3.14</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;sin(x)&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;myplot.png&#39;</span><span class="p">)</span>  <span class="c1"># saves png file</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;myplot.svg&#39;</span><span class="p">)</span>  <span class="c1"># saves svg file</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;myplot.eps&#39;</span><span class="p">)</span>  <span class="c1"># saves svg file</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;myplot.pdf&#39;</span><span class="p">)</span>  <span class="c1"># saves pdf file</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id1">
+<h2><span class="section-number">15.2. </span>The pylab interface<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<section id="fine-tuning-your-plot">
+<h3><span class="section-number">15.2.1. </span>Fine tuning your plot<a class="headerlink" href="#fine-tuning-your-plot" title="Link to this heading">#</a></h3>
+<p>Matplotlib allows us to fine tune our plots in great detail. Here is an example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pylab</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">N</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">N</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">3.14</span><span class="p">,</span> <span class="mf">3.14</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">y1</span> <span class="o">=</span> <span class="n">N</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">y2</span> <span class="o">=</span> <span class="n">N</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span><span class="p">(</span><span class="mi">5</span> <span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;sin(x)&#39;</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;cos(x)&#39;</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;This is the title of the graph&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;This is the title of the graph&#39;)
+</pre></div>
+</div>
+<img alt="_images/3abe423757041b895aa673bbdbcdeedc28c5eb053081a755063ff37a318f94eb.svg" src="_images/3abe423757041b895aa673bbdbcdeedc28c5eb053081a755063ff37a318f94eb.svg" /></div>
+</div>
+<p>showing some other useful commands:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">figure(figsize=(5,</span> <span class="pre">5))</span></code> sets the figure size to 5inch by 5inch</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plot(x,</span> <span class="pre">y1,</span> <span class="pre">label=’sin(x)’)</span></code> The “label” keyword defines the name of this line. The line label will be shown in the legend if the <code class="docutils literal notranslate"><span class="pre">legend()</span></code> command is used later.</p></li>
+<li><p>Note that calling the <code class="docutils literal notranslate"><span class="pre">plot</span></code> command repeatedly, allows you to overlay a number of curves.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">axis([-2,</span> <span class="pre">2,</span> <span class="pre">-1,</span> <span class="pre">1])</span></code> This fixes the displayed area to go from xmin=-2 to xmax=2 in x-direction, and from ymin=-1 to ymax=1 in y-direction</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">legend()</span></code> This command will display a legend with the labels as defined in the plot command. Try <code class="docutils literal notranslate"><span class="pre">help(pylab.legend)</span></code> to learn more about the placement of the legend.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">grid()</span></code> This command will display a grid on the backdrop.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xlabel(’...’)</span></code> and <code class="docutils literal notranslate"><span class="pre">ylabel(’...’)</span></code> allow labelling the axes.</p></li>
+</ul>
+<p>Note further than you can chose different line styles, line thicknesses, symbols and colours for the data to be plotted. (The syntax is very similar to MATLAB.) For example:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">plot(x,</span> <span class="pre">y,</span> <span class="pre">’og’)</span></code> will plot circles (<code class="docutils literal notranslate"><span class="pre">o</span></code>) in green (<code class="docutils literal notranslate"><span class="pre">g</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plot(x,</span> <span class="pre">y,</span> <span class="pre">’-r’)</span></code> will plot a line (<code class="docutils literal notranslate"><span class="pre">-</span></code>) in red (<code class="docutils literal notranslate"><span class="pre">r</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plot(x,</span> <span class="pre">y,</span> <span class="pre">’-b’,</span> <span class="pre">linewidth=2)</span></code> will plot a blue line (<code class="docutils literal notranslate"><span class="pre">b</span></code>) with two two pixel thickness <code class="docutils literal notranslate"><span class="pre">linewidth=2</span></code> which is twice as wide as the default.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plot(x,</span> <span class="pre">y,</span> <span class="pre">’-’,</span> <span class="pre">alpha=0.5)</span></code> will plot a semi-transparent line (<code class="docutils literal notranslate"><span class="pre">b</span></code>).</p></li>
+</ul>
+<p>The full list of options can be found when typing <code class="docutils literal notranslate"><span class="pre">help(pylab.plot)</span></code> at the Python prompt. Because this documentation is so useful, we repeat parts of it here:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>plot(*args, **kwargs)
+    Plot lines and/or markers to the
+    :class:`~matplotlib.axes.Axes`.  *args* is a variable length
+    argument, allowing for multiple *x*, *y* pairs with an
+    optional format string.  For example, each of the following is
+    legal::
+
+        plot(x, y)         # plot x and y using default line style and color
+        plot(x, y, &#39;bo&#39;)   # plot x and y using blue circle markers
+        plot(y)            # plot y using x as index array 0..N-1
+        plot(y, &#39;r+&#39;)      # ditto, but with red plusses
+
+    If *x* and/or *y* is 2-dimensional, then the corresponding columns
+    will be plotted.
+
+    An arbitrary number of *x*, *y*, *fmt* groups can be
+    specified, as in::
+
+        a.plot(x1, y1, &#39;g^&#39;, x2, y2, &#39;g-&#39;)
+
+    Return value is a list of lines that were added.
+
+    The following format string characters are accepted to control
+    the line style or marker:
+
+    ================    ===============================
+    character           description
+    ================    ===============================
+    &#39;-&#39;                 solid line style
+    &#39;--&#39;                dashed line style
+    &#39;-.&#39;                dash-dot line style
+    &#39;:&#39;                 dotted line style
+    &#39;.&#39;                 point marker
+    &#39;,&#39;                 pixel marker
+    &#39;o&#39;                 circle marker
+    &#39;v&#39;                 triangle_down marker
+    &#39;^&#39;                 triangle_up marker
+    &#39;&lt;&#39;                 triangle_left marker
+    &#39;&gt;&#39;                 triangle_right marker
+    &#39;1&#39;                 tri_down marker
+    &#39;2&#39;                 tri_up marker
+    &#39;3&#39;                 tri_left marker
+    &#39;4&#39;                 tri_right marker
+    &#39;s&#39;                 square marker
+    &#39;p&#39;                 pentagon marker
+    &#39;*&#39;                 star marker
+    &#39;h&#39;                 hexagon1 marker
+    &#39;H&#39;                 hexagon2 marker
+    &#39;+&#39;                 plus marker
+    &#39;x&#39;                 x marker
+    &#39;D&#39;                 diamond marker
+    &#39;d&#39;                 thin_diamond marker
+    &#39;|&#39;                 vline marker
+    &#39;_&#39;                 hline marker
+    ================    ===============================
+
+The following color abbreviations are supported:
+
+==========  ========
+character   color
+==========  ========
+&#39;b&#39;         blue
+&#39;g&#39;         green
+&#39;r&#39;         red
+&#39;c&#39;         cyan
+&#39;m&#39;         magenta
+&#39;y&#39;         yellow
+&#39;k&#39;         black
+&#39;w&#39;         white
+==========  ========
+
+In addition, you can specify colors in many weird and
+wonderful ways, including full names (``&#39;green&#39;``), hex
+strings (``&#39;#008000&#39;``), RGB or RGBA tuples (``(0,1,0,1)``) or
+grayscale intensities as a string (``&#39;0.8&#39;``).  Of these, the
+string specifications can be used in place of a ``fmt`` group,
+but the tuple forms can be used only as ``kwargs``.
+
+Line styles and colors are combined in a single format string, as in
+``&#39;bo&#39;`` for blue circles.
+
+The *kwargs* can be used to set line properties (any property that has
+a ``set_*`` method).  You can use this to set a line label (for auto
+legends), linewidth, anitialising, marker face color, etc.  Here is an
+example::
+
+    plot([1,2,3], [1,2,3], &#39;go-&#39;, label=&#39;line 1&#39;, linewidth=2)
+    plot([1,2,3], [1,4,9], &#39;rs&#39;,  label=&#39;line 2&#39;)
+    axis([0, 4, 0, 10])
+    legend()
+
+If you make multiple lines with one plot command, the kwargs
+apply to all those lines, e.g.::
+
+    plot(x1, y1, x2, y2, antialised=False)
+
+Neither line will be antialiased.
+
+You do not need to use format strings, which are just
+abbreviations.  All of the line properties can be controlled
+by keyword arguments.  For example, you can set the color,
+marker, linestyle, and markercolor with::
+
+    plot(x, y, color=&#39;green&#39;, linestyle=&#39;dashed&#39;, marker=&#39;o&#39;,
+         markerfacecolor=&#39;blue&#39;, markersize=12).  See
+         :class:`~matplotlib.lines.Line2D` for details.
+</pre></div>
+</div>
+<p>The use of different line styles and thicknesses is particularly useful when colour cannot be used to distinguish lines (for example when graph will be used in document that is to be printed in black and white only).</p>
+</section>
+<section id="plotting-more-than-one-curve">
+<h3><span class="section-number">15.2.2. </span>Plotting more than one curve<a class="headerlink" href="#plotting-more-than-one-curve" title="Link to this heading">#</a></h3>
+<p>There are three different methods to display more than one curve.</p>
+<section id="two-or-more-curves-in-one-graph">
+<h4><span class="section-number">15.2.2.1. </span>Two (or more) curves in one graph<a class="headerlink" href="#two-or-more-curves-in-one-graph" title="Link to this heading">#</a></h4>
+<p>By calling the <code class="docutils literal notranslate"><span class="pre">plot</span></code> command repeatedly, more than one curve can be drawn in the same graph. Example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">pylab</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;sin(t)&#39;</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;cos(t)&#39;</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fa140459d90&gt;
+</pre></div>
+</div>
+<img alt="_images/74ff2142ef9a0c7650ffba7d6e9d49fb9f7a0e1fba0cd9fcb880f5de6888c331.svg" src="_images/74ff2142ef9a0c7650ffba7d6e9d49fb9f7a0e1fba0cd9fcb880f5de6888c331.svg" /></div>
+</div>
+</section>
+<section id="two-or-more-graphs-in-one-figure-window">
+<h4><span class="section-number">15.2.2.2. </span>Two (or more graphs) in one figure window<a class="headerlink" href="#two-or-more-graphs-in-one-figure-window" title="Link to this heading">#</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">pylab.subplot</span></code> command allows to arrange several graphs within one figure window. The general syntax is</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>subplot(numRows, numCols, plotNum)
+</pre></div>
+</div>
+<p>For example, to arrange 4 graphs in a 2-by-2 matrix, and to select the first graph for the next plot command, one can use:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here is a complete example plotting the sine and cosine curves in two graphs that are aligned underneath each other within the same window:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">pylab</span>
+
+<span class="n">pylab</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;sin(t)&#39;</span><span class="p">)</span>
+
+<span class="n">pylab</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;cos(t)&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e45a183958c1438d1b0f1ce14766ba4b4321ad2b5f0c0c173f4e61640e1347f6.svg" src="_images/e45a183958c1438d1b0f1ce14766ba4b4321ad2b5f0c0c173f4e61640e1347f6.svg" /></div>
+</div>
+</section>
+<section id="two-or-more-figure-windows">
+<h4><span class="section-number">15.2.2.3. </span>Two (or more) figure windows<a class="headerlink" href="#two-or-more-figure-windows" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pylab</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+
+<span class="n">pylab</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">pylab</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fa1404c90d0&gt;]
+</pre></div>
+</div>
+<img alt="_images/e0f287805c5de462b3778c0c11df51716d911c31bb0c2e4ba169d40b791686cb.svg" src="_images/e0f287805c5de462b3778c0c11df51716d911c31bb0c2e4ba169d40b791686cb.svg" /><img alt="_images/9ba824cc272d49de66060b304d36ac695b15533320c234b3722b5abdee7cf4ff.svg" src="_images/9ba824cc272d49de66060b304d36ac695b15533320c234b3722b5abdee7cf4ff.svg" /></div>
+</div>
+<p>Note that you can use <code class="docutils literal notranslate"><span class="pre">pylab.close()</span></code> to close one, some or all figure windows (use <code class="docutils literal notranslate"><span class="pre">help(pylab.close)</span></code> to learn more). The closing of figures is not relevant for inline plots, but for plots that appear in pop-up windows, those windows will be closed when the figure is closed.</p>
+</section>
+</section>
+<section id="interactive-mode">
+<h3><span class="section-number">15.2.3. </span>Interactive mode<a class="headerlink" href="#interactive-mode" title="Link to this heading">#</a></h3>
+<p>Pylab can be run in two modes:</p>
+<ul class="simple">
+<li><p>non-interactive (this is the default)</p></li>
+<li><p>interactive.</p></li>
+</ul>
+<p>In non-interactive mode, no plots will be displayed until the <code class="docutils literal notranslate"><span class="pre">show()</span></code> command has been issued. In this mode, the <code class="docutils literal notranslate"><span class="pre">show()</span></code> command should be the last statement of your program.</p>
+<p>In interactive mode, plots will be immediately displayed after the plot command has been issued.</p>
+<p>One can switch the interactive mode on using <code class="docutils literal notranslate"><span class="pre">pylab.ion()</span></code> and off using <code class="docutils literal notranslate"><span class="pre">pylab.ioff()</span></code>. IPython’s <code class="docutils literal notranslate"><span class="pre">%matplotlib</span></code> magic also enables interactive mode.</p>
+<p>If you use Jupyter notebooks with inline plots, then this feature is not so relevant.</p>
+</section>
+</section>
+<section id="the-matplotlib-pyplot-interface">
+<h2><span class="section-number">15.3. </span>The matplotlib.pyplot interface<a class="headerlink" href="#the-matplotlib-pyplot-interface" title="Link to this heading">#</a></h2>
+<p>This is the recommended way to use matplotlib for producing publication quality plots, or anything that needs some fine tuning: the object oriented approach of the <code class="docutils literal notranslate"><span class="pre">pyplot</span></code> interface makes it generally easier to tailor the plots that the state-driven <code class="docutils literal notranslate"><span class="pre">pylab</span></code> interface.</p>
+<p>The central two commands to create <code class="docutils literal notranslate"><span class="pre">pyplot</span></code> figures are:</p>
+<ol class="arabic simple">
+<li><p>Create a figure object, and one (or more) axes objects within the figure.</p></li>
+<li><p>Create some drawing inside the axes object.</p></li>
+</ol>
+<p>Here is an example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fa1403ba950&gt;]
+</pre></div>
+</div>
+<img alt="_images/0e5d96541da90d3ae812e2bccd6aebec59b54b1c65a5a3cf4b4dbcf16e8395ee.svg" src="_images/0e5d96541da90d3ae812e2bccd6aebec59b54b1c65a5a3cf4b4dbcf16e8395ee.svg" /></div>
+</div>
+<p>Below is a more complete example. We can see that the object oriented nature, for example the <code class="docutils literal notranslate"><span class="pre">ax</span></code> object, makes it possible to target our formatting instructions to that <code class="docutils literal notranslate"><span class="pre">ax</span></code> object. This becomes particularly useful if we have more than one axes object in the same figure.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="s1">&#39;x-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="s1">&#39;on&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y=f(x)&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;pyplot-demo2.pdf&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/70fc9101057e7f6cc9a1af66458eed1a6d04d8b103d2762f85459b7866deb399.svg" src="_images/70fc9101057e7f6cc9a1af66458eed1a6d04d8b103d2762f85459b7866deb399.svg" /></div>
+</div>
+<section id="histograms">
+<h3><span class="section-number">15.3.1. </span>Histograms<a class="headerlink" href="#histograms" title="Link to this heading">#</a></h3>
+<embed src="code/pylab/pylabhistogram.pdf" style="width:100.0%" />
+<p>The program below demonstrates how to create histograms from statistical data with matplotlib.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span>
+
+<span class="c1"># create the data</span>
+<span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">15</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">mu</span> <span class="o">+</span> <span class="n">sigma</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+
+<span class="c1"># create the figure and axes objects</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="c1"># the histogram of the data</span>
+<span class="n">n</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">patches</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+
+<span class="c1"># add a &#39;best fit&#39; line</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+<span class="n">l</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;r--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># annotate the plot</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Smarts&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Probability&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\mathrm{Histogram\ of\ IQ:}\ \mu=100,\ \sigma=15$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">40</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ee46bc727b5c1709c4e5a2e61c8d4959a3c71b2780079697a490d4e43e399a66.svg" src="_images/ee46bc727b5c1709c4e5a2e61c8d4959a3c71b2780079697a490d4e43e399a66.svg" /></div>
+</div>
+<p>Do not try to understand every single command in this file: some are rather specialised and have not been covered in this text. The intention is to provide a few examples to show what can – in principle – be done with Matplotlib. If you need a plot like this, the expectation is that you will need to experiment and possibly learn a bit more about Matplotlib.</p>
+</section>
+<section id="visualising-matrix-data">
+<h3><span class="section-number">15.3.2. </span>Visualising matrix data<a class="headerlink" href="#visualising-matrix-data" title="Link to this heading">#</a></h3>
+<p>The program below demonstrates how to create a bitmap-plot of the entries of a matrix.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Helper function (from https://github.com/matplotlib/matplotlib/blob/master/lib/matplotlib/mlab.py</span>
+<span class="c1"># as of August 2018)</span>
+<span class="k">def</span> <span class="nf">bivariate_normal</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">sigmax</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">sigmay</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+                     <span class="n">mux</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">muy</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">sigmaxy</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Bivariate Gaussian distribution for equal shape *X*, *Y*.</span>
+<span class="sd">    See `bivariate normal</span>
+<span class="sd">    &lt;https://mathworld.wolfram.com/BivariateNormalDistribution.html&gt;`_</span>
+<span class="sd">    at mathworld.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">Xmu</span> <span class="o">=</span> <span class="n">X</span> <span class="o">-</span> <span class="n">mux</span>
+    <span class="n">Ymu</span> <span class="o">=</span> <span class="n">Y</span> <span class="o">-</span> <span class="n">muy</span>
+
+    <span class="n">rho</span> <span class="o">=</span> <span class="n">sigmaxy</span> <span class="o">/</span> <span class="p">(</span><span class="n">sigmax</span><span class="o">*</span><span class="n">sigmay</span><span class="p">)</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">Xmu</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="n">sigmax</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">Ymu</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="n">sigmay</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">rho</span><span class="o">*</span><span class="n">Xmu</span><span class="o">*</span><span class="n">Ymu</span><span class="o">/</span><span class="p">(</span><span class="n">sigmax</span><span class="o">*</span><span class="n">sigmay</span><span class="p">)</span>
+    <span class="n">denom</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">sigmax</span><span class="o">*</span><span class="n">sigmay</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">rho</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">z</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">rho</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span> <span class="o">/</span> <span class="n">denom</span>
+
+<span class="c1"># create matrix Z that contains some interesting data</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">bivariate_normal</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+
+<span class="c1"># display the &#39;raw&#39; matrix data of Z in one set of axis</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax0</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">axes</span>
+<span class="n">ax0</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+<span class="n">ax0</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;no interpolation&quot;</span><span class="p">)</span>
+
+<span class="c1"># display the data interpolated in other set of axis</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;bilinear&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;with bi-linear interpolation&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;imshow example&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;pylabimshow.pdf&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e5a8f83b59fcb63a911c2cb124c19be3716b95728d864c1844d329ff8e4917d1.svg" src="_images/e5a8f83b59fcb63a911c2cb124c19be3716b95728d864c1844d329ff8e4917d1.svg" /></div>
+</div>
+<p>To use different colourmaps, we make use of the <code class="docutils literal notranslate"><span class="pre">matplotlib.cm</span></code> module (where cm stands for Colour Map). The code below demonstrates how we can select colourmaps from the set of already provided maps, and how we can modify them (here by reducing the number of colours in the map). The last example mimics the behaviour of the more sophisticated <code class="docutils literal notranslate"><span class="pre">contour</span></code> command that also comes with <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.cm</span> <span class="k">as</span> <span class="nn">cm</span>        <span class="c1"># Colour map submodule</span>
+
+<span class="c1"># create matrix Z that contains some data interesting data</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="mf">0.025</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">bivariate_normal</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+
+<span class="c1"># Create a matrix of axes with 2 rows and 3 columns</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">)</span>  <span class="c1"># viridis colourmap </span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;colourmap jet&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis_r</span><span class="p">)</span>  <span class="c1"># reverse viridis colourmap</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;colourmap jet_r&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;colourmap gray&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">hsv</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;colourmap hsv&quot;</span><span class="p">)</span>  <span class="c1"># this one is periodic</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">plasma</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;colourmap plasma&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="c1"># make isolines by reducing number of colours to 10</span>
+<span class="n">mycmap</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>    <span class="c1"># 10 discrete colors</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">mycmap</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;colourmap viridis</span><span class="se">\n</span><span class="s2">(10 colours only)&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>   <span class="c1"># avoid overlap of titles and axis labels</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;pylabimshowcm.pdf&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_234/332518464.py:36: MatplotlibDeprecationWarning: The get_cmap function was deprecated in Matplotlib 3.7 and will be removed two minor releases later. Use ``matplotlib.colormaps[name]`` or ``matplotlib.colormaps.get_cmap(obj)`` instead.
+  mycmap = cm.get_cmap(&#39;viridis&#39;, 10)    # 10 discrete colors
+</pre></div>
+</div>
+<img alt="_images/c61009b8b8fc804a13e18eeb9f338570b41e963050590da411528130695634de.svg" src="_images/c61009b8b8fc804a13e18eeb9f338570b41e963050590da411528130695634de.svg" /></div>
+</div>
+</section>
+<section id="what-colour-map-to-choose">
+<h3><span class="section-number">15.3.3. </span>What colour map to choose?<a class="headerlink" href="#what-colour-map-to-choose" title="Link to this heading">#</a></h3>
+<p>It is a non-trivial question which colour map one should use. There is a useful discussion as part of the <a class="reference external" href="https://matplotlib.org/stable/tutorials/colors/colormaps.html">matplotlib documentation</a>.</p>
+<p>By default a ‘perceptually uniform’ colourmap is a good choice: the perception of the colours follows the values we try to represent. <a class="reference external" href="https://matplotlib.org/stable/tutorials/colors/colormaps.html#sequential">Examples</a> are “viridis”, “plasma”, “inferno”, “magma”, “cividis”.</p>
+<p>This is a complex topic in its own right.</p>
+</section>
+<section id="plots-of-z-f-x-y-and-other-features-of-matplotlib">
+<h3><span class="section-number">15.3.4. </span>Plots of <em>z</em> = <em>f</em>(<em>x</em>, <em>y</em>) and other features of Matplotlib<a class="headerlink" href="#plots-of-z-f-x-y-and-other-features-of-matplotlib" title="Link to this heading">#</a></h3>
+<p>Matplotlib has a large number of features and can create all the standard (1d and 2d) plots such as histograms, pie charts, scatter plots, 2d-intensity plots (i.e. <em>z</em> = <em>f</em>(<em>x</em>, <em>y</em>)) and contour lines) and much more. The figure below shows such an example ([contour_demo.py]
+(https://matplotlib.org/stable/gallery/images_contours_and_fields/contour_demo.html)).</p>
+<p><a href="https://matplotlib.org/stable/gallery/images_contours_and_fields/contour_demo.html"><img alt="The output of contour_demo.py." src="_images/contour_demo.png" /> </a></p>
+<p>Some support for 3d plots is also available: https://matplotlib.org/stable/gallery/index.html#d-plotting</p>
+</section>
+<section id="how-to-learn-how-to-use-matplotlib">
+<h3><span class="section-number">15.3.5. </span>How to learn how to use Matplotlib?<a class="headerlink" href="#how-to-learn-how-to-use-matplotlib" title="Link to this heading">#</a></h3>
+<p>A common strategy is to scan the examples at <a class="reference external" href="https://matplotlib.org/stable/gallery/index.html">https://matplotlib.org/stable/gallery</a> to find a plot similar to the desired one, and then to modify the given example code. In the process, it may be worth learning more about the commands used in the example through reading the documentation.</p>
+</section>
+</section>
+<section id="visual-python">
+<h2><span class="section-number">15.4. </span>Visual Python<a class="headerlink" href="#visual-python" title="Link to this heading">#</a></h2>
+<p>Visual Python is a Python module that makes it fairly easy to create and animate three-dimensional scenes.</p>
+<p>Further information:</p>
+<ul class="simple">
+<li><p>The Visual Python home page</p></li>
+<li><p>The Visual Python documentation (explaining all objects with all their parameters)</p></li>
+</ul>
+<p>Short videos introducing Visual Python:</p>
+<ul class="simple">
+<li><p>Shawn Weatherford, Jeff Polak (students of Ruth Chabay): <a class="reference external" href="https://www.youtube.com/vpythonvideos">https://www.youtube.com/vpythonvideos</a></p></li>
+</ul>
+<section id="basics-rotating-and-zooming">
+<h3><span class="section-number">15.4.1. </span>Basics, rotating and zooming<a class="headerlink" href="#basics-rotating-and-zooming" title="Link to this heading">#</a></h3>
+<p>Here is an example showing how to create a red and a blue sphere at two different positions together with a flat box (<code class="docutils literal notranslate"><span class="pre">vpythondemo1.py</span></code>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">visual</span>
+<span class="n">sphere1</span> <span class="o">=</span> <span class="n">visual</span><span class="o">.</span><span class="n">sphere</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">visual</span><span class="o">.</span><span class="n">color</span><span class="o">.</span><span class="n">blue</span><span class="p">)</span>
+<span class="n">sphere2</span> <span class="o">=</span> <span class="n">visual</span><span class="o">.</span><span class="n">sphere</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">visual</span><span class="o">.</span><span class="n">color</span><span class="o">.</span><span class="n">red</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">base</span> <span class="o">=</span> <span class="n">visual</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">length</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="Snapshot of vpythondemo1.py." src="_images/vpythondemo1.png" />
+<p>Once you have created such a visual python scene, you can</p>
+<ul class="simple">
+<li><p>rotate the scene by pressing the right mouse button and moving the mouse</p></li>
+<li><p>zoom in and out by pressing the middle mouse button (this could be the wheel) and moving the mouse up and down. (On some (Windows?) installations, one has to press the left and the right mouse button simultaneously and then move the move the mouse up and down to zoom.)</p></li>
+</ul>
+</section>
+<section id="setting-the-frame-rate-for-animations">
+<h3><span class="section-number">15.4.2. </span>Setting the frame rate for animations<a class="headerlink" href="#setting-the-frame-rate-for-animations" title="Link to this heading">#</a></h3>
+<p>A particular strength of Visual Python is its ability to display time-dependent data:</p>
+<ul class="simple">
+<li><p>A very useful command is the <code class="docutils literal notranslate"><span class="pre">rate()</span></code> command which ensures that a loop is only executed at a certain frame rate. Here is an example printing exactly two “Hello World”s per second (<code class="docutils literal notranslate"><span class="pre">vpythondemo2.py</span></code>):</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">visual</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">visual</span><span class="o">.</span><span class="n">rate</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello World (0.5 seconds per line)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>All Visual Python objects (such as the spheres and the box in the example above) have a <code class="docutils literal notranslate"><span class="pre">.pos</span></code> attribute which contains the position (of the centre of the object [sphere,box] or one end of the object [cylinder,helix]). Here is an example showing a sphere moving up and down (<code class="docutils literal notranslate"><span class="pre">vpythondemo3.py</span></code>):</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">visual</span><span class="o">,</span> <span class="nn">math</span>
+
+<span class="n">ball</span> <span class="o">=</span> <span class="n">visual</span><span class="o">.</span><span class="n">sphere</span><span class="p">()</span>
+<span class="n">box</span> <span class="o">=</span> <span class="n">visual</span><span class="o">.</span><span class="n">box</span><span class="p">(</span> <span class="n">pos</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.5</span> <span class="p">)</span>
+
+<span class="c1">#tell visual not to automatically scale the image</span>
+<span class="n">visual</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">autoscale</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="mf">0.1</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+    <span class="c1">#update the ball&#39;s position</span>
+    <span class="n">ball</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1">#ensure we have only 24 frames per second</span>
+    <span class="n">visual</span><span class="o">.</span><span class="n">rate</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="Snapshot of vpythondemo3.py." src="_images/vpythondemo3.png" />
+</section>
+<section id="tracking-trajectories">
+<h3><span class="section-number">15.4.3. </span>Tracking trajectories<a class="headerlink" href="#tracking-trajectories" title="Link to this heading">#</a></h3>
+<p>You can track the trajectory of an object using a “curve”. The basic idea is to append positions to that curve object as demonstrated in this example (<code class="docutils literal notranslate"><span class="pre">vpythondemo4.py</span></code>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">visual</span><span class="o">,</span> <span class="nn">math</span>
+
+<span class="n">ball</span> <span class="o">=</span> <span class="n">visual</span><span class="o">.</span><span class="n">sphere</span><span class="p">()</span>
+<span class="n">box</span> <span class="o">=</span> <span class="n">visual</span><span class="o">.</span><span class="n">box</span><span class="p">(</span> <span class="n">pos</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.5</span> <span class="p">)</span>
+<span class="n">trace</span><span class="o">=</span><span class="n">visual</span><span class="o">.</span><span class="n">curve</span><span class="p">(</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">visual</span><span class="o">.</span><span class="n">color</span><span class="o">.</span><span class="n">green</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="mf">0.1</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+    <span class="c1">#update the ball&#39;s position</span>
+    <span class="n">ball</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">trace</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">ball</span><span class="o">.</span><span class="n">pos</span> <span class="p">)</span>
+
+    <span class="c1">#ensure we have only 24 frames per second</span>
+    <span class="n">visual</span><span class="o">.</span><span class="n">rate</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="Snapshot of vpythondemo4.py." src="_images/vpythondemo4.png" />
+<p>As with most visual Python objects, you can specify the colour of the curve (also per appended element!) and the radius.</p>
+</section>
+<section id="connecting-objects-cylinders-springs">
+<h3><span class="section-number">15.4.4. </span>Connecting objects (Cylinders, springs, …)<a class="headerlink" href="#connecting-objects-cylinders-springs" title="Link to this heading">#</a></h3>
+<p>Cylinders and helices can be used to “connect” two objects. In addition to the <code class="docutils literal notranslate"><span class="pre">pos</span></code> attribute (which stores the position of one end of the object), there is also an <code class="docutils literal notranslate"><span class="pre">axis</span></code> attribute which stores the vector pointing from <code class="docutils literal notranslate"><span class="pre">pos</span></code> to the other end of the object. Here is an example showing this for a cylinder: (<code class="docutils literal notranslate"><span class="pre">vpythondemo5py</span></code>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">visual</span><span class="o">,</span> <span class="nn">math</span>
+
+<span class="n">ball1</span> <span class="o">=</span> <span class="n">visual</span><span class="o">.</span><span class="n">sphere</span><span class="p">(</span> <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mi">2</span> <span class="p">)</span>
+<span class="n">ball2</span> <span class="o">=</span> <span class="n">visual</span><span class="o">.</span><span class="n">sphere</span><span class="p">(</span> <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mi">2</span> <span class="p">)</span>
+<span class="n">connection</span> <span class="o">=</span> <span class="n">visual</span><span class="o">.</span><span class="n">cylinder</span><span class="p">(</span><span class="n">pos</span> <span class="o">=</span> <span class="n">ball1</span><span class="o">.</span><span class="n">pos</span><span class="p">,</span> \
+                             <span class="n">axis</span> <span class="o">=</span> <span class="n">ball2</span><span class="o">.</span><span class="n">pos</span> <span class="o">-</span> <span class="n">ball1</span><span class="o">.</span><span class="n">pos</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="c1">#move ball2 </span>
+    <span class="n">ball2</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">,</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+
+    <span class="c1">#keep cylinder connection between ball1 and ball2</span>
+    <span class="n">connection</span><span class="o">.</span><span class="n">axis</span> <span class="o">=</span> <span class="n">ball2</span><span class="o">.</span><span class="n">pos</span> <span class="o">-</span> <span class="n">ball1</span><span class="o">.</span><span class="n">pos</span>
+
+    <span class="n">visual</span><span class="o">.</span><span class="n">rate</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="d-vision">
+<h3><span class="section-number">15.4.5. </span>3d vision<a class="headerlink" href="#d-vision" title="Link to this heading">#</a></h3>
+<p>If you have access to “anaglyphic” (<em>i.e.</em> colored) glasses (best red-cyan but red-green or red-blue works as well), then you can switch visual python into this stereo mode by adding these two lines to the beginning of your program:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">visual</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">stereo</span><span class="o">=</span><span class="s1">&#39;redcyan&#39;</span>
+<span class="n">visual</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">stereodepth</span><span class="o">=</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>Note the effect of the <code class="docutils literal notranslate"><span class="pre">stereodepth</span></code> parameter:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">stereodepth=0</span></code>: 3d scene “inside” the screen (default)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stereodepth=1</span></code>: 3d scene at screen surface (this often looks best)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stereodepth=2</span></code>: 3d scene sticking out of the screen</p></li>
+</ul>
+<img alt="Snapshot of vpythondemo3.py in 3d mode (’redcyan’). With red/cyan glasses, this appears as a 3d image (with spatial depth)." src="_images/vpythondemo3_3d.png" />
+</section>
+</section>
+<section id="visualising-higher-dimensional-data-vtk">
+<h2><span class="section-number">15.5. </span>Visualising higher dimensional data (VTK)<a class="headerlink" href="#visualising-higher-dimensional-data-vtk" title="Link to this heading">#</a></h2>
+<p>Often, we need to understand data defined at 3d positions in space. The data itself is often a scalar field (such as temperature) or a 3d vector (such as velocity or magnetic field), or occasionally a tensor. For example for a 3d-vector field <em>f</em> defined in 3d-space (<span class="math notranslate nohighlight">\(\vec{f}(\vec{x})\)</span> where <span class="math notranslate nohighlight">\(\vec{x} \in I\!\!R^3\)</span> and <span class="math notranslate nohighlight">\(\vec{f}(\vec{x})
+\in I\!\!R^3\)</span>) we could draw a 3d-arrow at every (grid) point in space. It is common for these data sets to be time dependent.</p>
+<p>The probably most commonly used library in Science and Engineering to visualise such data sets is probably VTK, the Visualisation ToolKit (<a class="reference external" href="https://vtk.org">https://vtk.org</a>). This is a substantial C++ library with interfaces to high level languages, including Python.</p>
+<p>One can either call these routines directly from Python code, or write the data to disk in a format that the VTK library can read (so called vtk data files), and then use stand-alone programme such as Mayavi, ParaView and VisIt to read these data files and manipulate them (ofter with a GUI). All three of these are using the VTK library internally, and can read vtk data files.</p>
+<p>These package is very well suited to visualise static and timedependent 2d and 3d-fields (scalar, vector and tensor fields). Two examples are shown below.</p>
+<p>They can be used as a stand-alone executables with a GUI to visualise VTK files. It can also be scripted from a Python program, or used interactively from a Python session.</p>
+<section id="mayavi-paraview-visit">
+<h3><span class="section-number">15.5.1. </span>Mayavi, Paraview, Visit<a class="headerlink" href="#mayavi-paraview-visit" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Mayavi Home page <a class="reference external" href="http://code.enthought.com/pages/mayavi-project.html">http://code.enthought.com/pages/mayavi-project.html</a></p></li>
+<li><p>Paraview Home page <a class="reference external" href="https://www.paraview.org">https://www.paraview.org</a></p></li>
+<li><p>VisIt Home page <a class="reference external" href="https://wci.llnl.gov/simulation/computer-codes/visit/">https://wci.llnl.gov/simulation/computer-codes/visit/</a></p></li>
+</ul>
+<img alt="image" src="_images/vector_field_combination.png" />
+<img alt="image" src="_images/mayavi-samp.png" />
+<p>Two examples from MayaVi visualisations.</p>
+</section>
+<section id="writing-vtk-files-from-python-pyvtk">
+<h3><span class="section-number">15.5.2. </span>Writing vtk files from Python (pyvtk)<a class="headerlink" href="#writing-vtk-files-from-python-pyvtk" title="Link to this heading">#</a></h3>
+<p>A small but powerful Python library is pyvtk available at https://github.com/pearu/pyvtk. This allows to create vtk files from Python data structures very easily.</p>
+<p>Given a finite element mesh or a finite difference data set in Python, one can use pyvtk to write such data into files, and then use one of the visualisation applications listed above to load the vtk files and to display and investigate them.</p>
+</section>
+</section>
+<section id="further-tools-and-developments">
+<h2><span class="section-number">15.6. </span>Further tools and developments<a class="headerlink" href="#further-tools-and-developments" title="Link to this heading">#</a></h2>
+<p>In addition to <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>, there are a number of other libraries with similar or related visualisation functionality.</p>
+<p><a class="reference external" href="https://plot.ly/python">Plotly.py</a> and <a class="reference external" href="https://bokeh.org">Bokeh</a> – together with the veteran of python-based plotting <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> – form the basis for many tools that provide visualisation skills.</p>
+<p>A beautiful summary and <a class="reference external" href="https://pyviz.org/tools.html">categorisation</a> of these and other libraries is available at https://pyviz.org.</p>
+<section id="exploiting-self-describing-data-for-visualisation">
+<h3><span class="section-number">15.6.1. </span>Exploiting self-describing data for visualisation<a class="headerlink" href="#exploiting-self-describing-data-for-visualisation" title="Link to this heading">#</a></h3>
+<p>Some libraries, such as <a class="reference external" href="http://pandas.pydata.org">Pandas</a> (see also <a class="reference internal" href="17-pandas.html"><span class="std std-doc">Chapter on Pandas</span></a>), <a class="reference external" href="http://xarray.pydata.org">Xarray</a>, and <a class="reference external" href="https://holoviews.org">holoviews</a> make use of the idea of self-describing data to simplify the visualisation: while the data in a numpy array is ‘just’ a (multidimensional) matrix of data points, these libraries can store metadata – such as headings and coordinates – associated with these data points. We also talked about annotated or labelled data to describe the presence of such metadata.</p>
+<p>What is the benefit of having this meta-data available? An xarray, for example, may store a 2d-array (like a numpy array) but have the metadata store that one dimension refers to the x-position and the other direction to time. The x-array object provides convenience methods to select and plot the data in the xarray.</p>
+</section>
+<section id="the-future-of-data-visualisation">
+<h3><span class="section-number">15.6.2. </span>The future of data visualisation<a class="headerlink" href="#the-future-of-data-visualisation" title="Link to this heading">#</a></h3>
+<p>I would speculate that increasingly we will be using high-level plotting tools (such as pandas, xarray, holoviews) to explore data interactively.</p>
+<p>We can see a trend in data analysis libraries that data objects can be converted to such high-level annotated data objecs (such as European XFEL’s <a class="reference external" href="https://extra-data.readthedocs.io">extra-data</a> tools which can return a labelled xarray object). Other projects combine the metadata with the data in custom made objects to then provide convenience methods (such as <a class="reference external" href="http://ubermag.github.io">Ubermag</a>’s <a class="reference internal" href="#discretisedfield/field-matplotlib-visualisation.html"><span class="xref myst">discretisedfield</span></a> object).</p>
+<p>Will we still need to learn the basics, such as the <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code> interface? Probably yes: the very least to fine tune the plots provided by these high level libraries:</p>
+</section>
+<section id="fine-tuning-matplotlib-plots-that-are-generated-by-high-level-frame-works">
+<h3><span class="section-number">15.6.3. </span>Fine-tuning matplotlib plots that are generated by high level frame works<a class="headerlink" href="#fine-tuning-matplotlib-plots-that-are-generated-by-high-level-frame-works" title="Link to this heading">#</a></h3>
+<p>We show one example where pandas – as a representative for a high-level framework that can create plots – creates the plot, but we use <code class="docutils literal notranslate"><span class="pre">pyplot</span></code> commands to tailor the resulting plot.</p>
+<p>Let’s define the pandas data series first (it is not importat to understand the details of this now):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;bananas&#39;</span><span class="p">,</span> <span class="s1">&#39;oranges&#39;</span><span class="p">,</span> <span class="s1">&#39;potatoes&#39;</span><span class="p">])</span>
+<span class="n">s</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bananas     10
+oranges     20
+potatoes     1
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can use a convenience method from pandas to create a plot of the data series:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="_images/e4ebff544633bce8d5d67cdc42fb4dc7f34e8488812eeb0dc469267c76c186da.svg" src="_images/e4ebff544633bce8d5d67cdc42fb4dc7f34e8488812eeb0dc469267c76c186da.svg" /></div>
+</div>
+<p>Note how the bar chart is labelled appropriately: the metadata (here the labels ‘bananas’, ‘oranges’ and ‘potatoes’) have been used to label the x-axis in the plot.</p>
+<p>If we want to change this plot, the following strategy works, and is supported by other high-level frameworks as well:</p>
+<ul class="simple">
+<li><p>create an axes (and figure) object</p></li>
+<li><p>pass the axes object to the high level plotting framework</p></li>
+<li><p>use the axes object (and figure) to finetune the plot</p></li>
+</ul>
+<p>The following example shows how to add a title, customise the labelling of the y-axis, and add a grid to the plot, and change the size of the figure to be 10 inches by 3 inches:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="n">s</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Current stock&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">4</span><span class="p">));</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="s1">&#39;on&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/8526f0120099116f3849c6f306e94592380408645cfa43c82988cd67bdadd9c7.svg" src="_images/8526f0120099116f3849c6f306e94592380408645cfa43c82988cd67bdadd9c7.svg" /></div>
+</div>
+</section>
+</section>
+<section id="jupyter-notebooks">
+<h2><span class="section-number">15.7. </span>Jupyter Notebooks<a class="headerlink" href="#jupyter-notebooks" title="Link to this heading">#</a></h2>
+<p>The <a class="reference external" href="https://jupyter.org">Jupyter Notebook</a> has become a central tool for interactive data exploration and data analysis. I would go so far to say that most data scientists will see the Jupyter notebook as the default place to start a data exploration, analysis and machine learning project.</p>
+<p>Why is this so? The combination of annotation, code snippets, inlined results from computation or visualisation and the automatic logging of these steps in a notebook file can be of great use for research and development activities. A slightly longer summary is <a class="reference external" href="https://fangohr.github.io/blog/jupyter-for-computational-science-and-data-science.html">available here</a>.</p>
+<p>Some recent publications on the topic:</p>
+<ul class="simple">
+<li><p>Brian Granger, Fernando Pérez. <a class="reference external" href="https://doi.org/10.1109/MCSE.2021.3059263"><em>Jupyter: Thinking and Storytelling With Code and Data</em></a>, Computing in Science &amp; Engineering, vol. 23, no. 2, pp. 7-14, 1 March-April 2021, doi: 10.1109/MCSE.2021.3059263 <a class="reference external" href="https://www.authorea.com/users/394563/articles/508007-jupyter-thinking-and-storytelling-with-code-and-data">Authorea preprint</a>  (2021)</p></li>
+<li><p>Hans Fangohr, Marijan Beg, et al, <a class="reference external" href="http://accelconf.web.cern.ch/icalepcs2019/doi/JACoW-ICALEPCS2019-TUCPR02.html"><em>Data exploration and analysis with Jupyter notebooks</em></a>, Proceedings of the 17th International Conference on Accelerator and Large Experimental Physics Control Systems ICALEPCS2019, TUCPR02, doi: 10.18429/JACoW-ICALEPCS2019-TUCPR02 (<a class="reference external" href="https://jacow.org/icalepcs2019/papers/tucpr02.pdf">pdf</a>) (2020)</p></li>
+<li><p>Marijan Beg; Juliette Belin; Thomas Kluyver; Alexander Konovalov; Min Ragan-Kelley; Nicolas Thiery; Hans Fangohr. <a class="reference external" href="https://ieeexplore.ieee.org/document/9325550"><em>Using Jupyter for Reproducible Scientific Workflows</em></a> in Computing in Science &amp; Engineering, vol. 23, no. 2, pp. 36-46, 1 March-April 2021, doi: 10.1109/MCSE.2021.3052101 <a class="reference external" href="https://arxiv.org/abs/2102.09562">arXiv preprint</a> (2021)</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="14-numpy.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">14. </span>Numerical Python (numpy): arrays</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="16-scipy.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">16. </span>Numerical Methods using Python (scipy)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib-plotting-y-f-x-and-a-bit-more">15.1. Matplotlib – plotting y=f(x), (and a bit more)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib-and-pylab">15.1.1. Matplotlib and Pylab</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-example">15.1.2. First example</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pyplot-interface">15.1.2.1. The pyplot interface</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-import-matplotlib-pylab-pyplot-numpy-and-all-that">15.1.3. How to import matplotlib, pylab, pyplot, numpy and all that</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pylab-interface">15.1.3.1. The Pylab interface</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ipythons-inline-mode">15.1.4. IPython’s inline mode</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-the-figure-to-a-file">15.1.5. Saving the figure to a file</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">15.2. The pylab interface</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tuning-your-plot">15.2.1. Fine tuning your plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-more-than-one-curve">15.2.2. Plotting more than one curve</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#two-or-more-curves-in-one-graph">15.2.2.1. Two (or more) curves in one graph</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#two-or-more-graphs-in-one-figure-window">15.2.2.2. Two (or more graphs) in one figure window</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#two-or-more-figure-windows">15.2.2.3. Two (or more) figure windows</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-mode">15.2.3. Interactive mode</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-matplotlib-pyplot-interface">15.3. The matplotlib.pyplot interface</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#histograms">15.3.1. Histograms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualising-matrix-data">15.3.2. Visualising matrix data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-colour-map-to-choose">15.3.3. What colour map to choose?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plots-of-z-f-x-y-and-other-features-of-matplotlib">15.3.4. Plots of <em>z</em> = <em>f</em>(<em>x</em>, <em>y</em>) and other features of Matplotlib</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-learn-how-to-use-matplotlib">15.3.5. How to learn how to use Matplotlib?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visual-python">15.4. Visual Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics-rotating-and-zooming">15.4.1. Basics, rotating and zooming</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-the-frame-rate-for-animations">15.4.2. Setting the frame rate for animations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tracking-trajectories">15.4.3. Tracking trajectories</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connecting-objects-cylinders-springs">15.4.4. Connecting objects (Cylinders, springs, …)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-vision">15.4.5. 3d vision</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualising-higher-dimensional-data-vtk">15.5. Visualising higher dimensional data (VTK)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mayavi-paraview-visit">15.5.1. Mayavi, Paraview, Visit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-vtk-files-from-python-pyvtk">15.5.2. Writing vtk files from Python (pyvtk)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-tools-and-developments">15.6. Further tools and developments</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exploiting-self-describing-data-for-visualisation">15.6.1. Exploiting self-describing data for visualisation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-future-of-data-visualisation">15.6.2. The future of data visualisation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tuning-matplotlib-plots-that-are-generated-by-high-level-frame-works">15.6.3. Fine-tuning matplotlib plots that are generated by high level frame works</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebooks">15.7. Jupyter Notebooks</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Hans Fangohr
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
