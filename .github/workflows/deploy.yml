@@ -83,7 +83,7 @@ jobs:
 #          path: ./pages
 
   deploy:
-    needs: docker-build-jupyter-book build-jupyterlite
+    #needs: docker-build-jupyter-book build-jupyterlite
     #if: github.ref == 'refs/heads/main'
     #permissions:
     #  pages: write
