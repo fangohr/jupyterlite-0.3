@@ -91,11 +91,6 @@ jobs:
           name: jupyterlite-output
           path: jupyterlite-output
 
-#      - name: Upload artifact
-#        uses: actions/upload-pages-artifact@v3
-#        with:
-#          path: ./pages
-
   deploy:
     needs: [docker-build-jupyter-book, build-jupyterlite]
     #if: github.ref == 'refs/heads/main'
@@ -142,19 +137,10 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-
-      # # Deploy output to gh-pages branch
-      # - name: GitHub Pages action
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: ./pages
-      
       - uses: marvinpinto/action-automatic-releases@latest
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "latest"
           title: "Development Build"
           files: book/_build/latex/book.pdf
-
 
