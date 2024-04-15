@@ -7,9 +7,62 @@ on:
   pull_request:
     branches:
       - '*'
+  workflow_dispatch:
 
 jobs:
-  build:
+  docker-build-jupyter-book:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Cache Docker layers
+      uses: actions/cache@v4
+      with:
+        path: /tmp/.buildx-cache
+        key: ${{ runner.os }}-buildx-${{ hashFiles('poetry.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-buildx-${{ hashFiles('poetry.lock') }}
+
+    #  This build and push step does the same thing as `make docker-build`, but
+    #  makes it easier to store and load caches, which is why we use it instead
+    - name: Build and Save Layers Locally
+      uses: docker/build-push-action@v5
+      with:
+        context: ./
+        file: ./Dockerfile
+        load: true
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache
+        tags: python4compscience
+
+    - name: List Available Images
+      run: docker images
+
+    - name: Make Docker HTML (JBook---create html)
+      run: make docker-html
+
+    - name: Check links - Markdown
+      uses: gaurav-nelson/github-action-markdown-link-check@v1
+
+    - name: Make Docker Linkcheck
+      run: make docker-linkcheck
+
+    - name: Make Docker PDF  (JBook---create pdf)
+      run: |
+        make docker-pdf
+        sudo cp -v book/_build/latex/book.pdf book/_build/html/book.pdf
+
+    - name: upload jupyterbook artefacts
+      uses: actions/upload-artifact@master
+      with:
+        name: jupyterbook-output
+        path: book/_build/html
+
+
+  build-jupyterlite:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -28,32 +81,76 @@ jobs:
           mkdir -p jupyterlite-output/content
           jupyter lite build --contents jupyterlite-sources/content --output-dir jupyterlite-output/jlite
 
-      - name: gather-outputs created into pages
-        run: |
-          mkdir -p pages
-          # from Jupyter lite build
-          cp -av jupyterlite-output/* pages
-          # override index.html
-          cp other-content/index.html pages
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: upload jupyterlite artefact
+        uses: actions/upload-artifact@master
         with:
-          path: ./pages
+          name: jupyterlite-output
+          path: jupyterlite-output
+
+#      - name: Upload artifact
+#        uses: actions/upload-pages-artifact@v3
+#        with:
+#          path: ./pages
 
   deploy:
-    needs: build
-    if: github.ref == 'refs/heads/main'
+    needs: [docker-build-jupyter-book, build-jupyterlite]
+    #if: github.ref == 'refs/heads/main'
     permissions:
       pages: write
       id-token: write
-
+    
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
     runs-on: ubuntu-latest
     steps:
+      - name: download jupyterlite output artifact
+        uses: actions/download-artifact@master
+        with:
+          name: jupyterlite-output
+          path: jupyterlite-output
+
+      - name: download jupyterbook output artifact
+        uses: actions/download-artifact@master
+        with:
+          name: jupyterbook-output
+          path: jupyterbook-output
+
+
+      - name: gather-outputs-jupyterlite
+        run: |
+          mkdir -p pages
+          # from Jupyter lite build
+          cp -av jupyterlite-output/jlite pages
+
+      - name: gather-outputs-jupyterbook
+        run: |
+          # from building Jupyter book
+          cp -av jupyterbook-output/* pages
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./pages
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+
+      # # Deploy output to gh-pages branch
+      # - name: GitHub Pages action
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ./pages
+      
+      - uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          title: "Development Build"
+          files: book/_build/latex/book.pdf
+
+
