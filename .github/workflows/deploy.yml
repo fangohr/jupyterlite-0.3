@@ -126,17 +126,25 @@ jobs:
 
       - name: gather-outputs-jupyterbook
         run: |
-          mkdir -p pages
           # from building Jupyter book
           cp -av jupyterbook-output/* pages
 
-
-      # Deploy output to gh-pages branch
-      - name: GitHub Pages action
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./pages
+          path: ./pages
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+
+      # # Deploy output to gh-pages branch
+      # - name: GitHub Pages action
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ./pages
       
       - uses: marvinpinto/action-automatic-releases@latest
         with:
@@ -146,6 +154,3 @@ jobs:
           files: book/_build/latex/book.pdf
 
 
-      # - name: Deploy to GitHub Pages
-      #   id: deployment
-      #   uses: actions/deploy-pages@v4
