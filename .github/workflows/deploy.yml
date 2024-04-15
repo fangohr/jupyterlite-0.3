@@ -83,7 +83,7 @@ jobs:
 #          path: ./pages
 
   deploy:
-    #needs: docker-build-jupyter-book build-jupyterlite
+    needs: [docker-build-jupyter-book, build-jupyterlite]
     #if: github.ref == 'refs/heads/main'
     #permissions:
     #  pages: write
@@ -99,7 +99,7 @@ jobs:
         run: |
           mkdir -p pages
           # from Jupyter lite build
-          cp -av jupyterlite-output/* pages
+          cp -av jupyterlite-output/jlite pages
           # from building Jupyter book
           cp -av book/_build/html/* pages
           book/_build/latex/book.pdf
