@@ -732,7 +732,7 @@ $<span class="math notranslate nohighlight">\(\frac{\mathrm{d}y}{\mathrm{d}t}(t)
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;y(t)&#39;)
 </pre></div>
 </div>
-<img alt="_images/a61afa1f4b40b75eeaec45169c59bd1c558374c3f665b552667f0c40e5ca6fdc.svg" src="_images/a61afa1f4b40b75eeaec45169c59bd1c558374c3f665b552667f0c40e5ca6fdc.svg" /></div>
+<img alt="_images/d8e813a5fa3b827e65b0fbd5b915cfcc95ad5c2e4c6c26b6a7244b07b9badb37.svg" src="_images/d8e813a5fa3b827e65b0fbd5b915cfcc95ad5c2e4c6c26b6a7244b07b9badb37.svg" /></div>
 </div>
 <p>We have not given the <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> command any guidance for which values of <span class="math notranslate nohighlight">\(t\)</span> we would like to know the solution <span class="math notranslate nohighlight">\(y(t)\)</span>: we have only specified that <span class="math notranslate nohighlight">\(t_0 = 0\)</span> and that we would like to know the solution between <span class="math notranslate nohighlight">\(t_0=0\)</span> and <span class="math notranslate nohighlight">\(t_y=2\)</span>. The solver itself has determined the number of required function evaluations, and returns the corresponding values in <code class="docutils literal notranslate"><span class="pre">sol.t</span></code> and <code class="docutils literal notranslate"><span class="pre">sol.y[0]</span></code>.</p>
 <p>We can obtain more data points in a number of ways:</p>
@@ -752,7 +752,7 @@ $<span class="math notranslate nohighlight">\(\frac{\mathrm{d}y}{\mathrm{d}t}(t)
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;y(t)&#39;)
 </pre></div>
 </div>
-<img alt="_images/78844c04c31d1be51fde26615e7b2e6bce815a3b6294ba2f5ee245b051a46a63.svg" src="_images/78844c04c31d1be51fde26615e7b2e6bce815a3b6294ba2f5ee245b051a46a63.svg" /></div>
+<img alt="_images/198d86c0b00aa886aac042a030f6cd5205f53ac97fa2152dac869eadf9b947bd.svg" src="_images/198d86c0b00aa886aac042a030f6cd5205f53ac97fa2152dac869eadf9b947bd.svg" /></div>
 </div>
 <ol class="arabic simple" start="2">
 <li><p>We can also prescribe the precise locations for which we like to know the solutions <span class="math notranslate nohighlight">\(y(t)\)</span>:</p></li>
@@ -775,7 +775,7 @@ $<span class="math notranslate nohighlight">\(\frac{\mathrm{d}y}{\mathrm{d}t}(t)
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;y(t)&#39;)
 </pre></div>
 </div>
-<img alt="_images/0e5f9f6b68bdb994581c49ed0a604478bfe22f0003275ef366b5020c26a43b04.svg" src="_images/0e5f9f6b68bdb994581c49ed0a604478bfe22f0003275ef366b5020c26a43b04.svg" /></div>
+<img alt="_images/a38d002d824e4dac6e284c6d1083d27fd3547af89b24c4cf4973f9c92ba57c1a.svg" src="_images/a38d002d824e4dac6e284c6d1083d27fd3547af89b24c4cf4973f9c92ba57c1a.svg" /></div>
 </div>
 <p>If we use <code class="docutils literal notranslate"><span class="pre">t_eval</span></code> - and thus request values of the solution at particular points - <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> will not generally change the way it computes the solution, but rather use interpolation to map the way it has internally computed the solution to the values of t for which we would like to know the solution. There is thus no (significant) computational penalty if we use <code class="docutils literal notranslate"><span class="pre">t_eval</span></code> to get smoother looking plots.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> command returns a <code class="docutils literal notranslate"><span class="pre">OdeResult</span></code> object, which we have called <code class="docutils literal notranslate"><span class="pre">sol</span></code> in the example above.</p>
@@ -1171,7 +1171,7 @@ solve_ivp(fun, t_span, y0, method=&#39;RK45&#39;, t_eval=None, dense_output=Fals
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/252d0bc22125e70b69d6641eac6e6b6b8e9976d34f7754238e9f4f26a5fe8387.svg" src="_images/252d0bc22125e70b69d6641eac6e6b6b8e9976d34f7754238e9f4f26a5fe8387.svg" /></div>
+<img alt="_images/e775684222b95122f64f97c3c321bb10e089b8a2be86136a4da36178d8aa230e.svg" src="_images/e775684222b95122f64f97c3c321bb10e089b8a2be86136a4da36178d8aa230e.svg" /></div>
 </div>
 </section>
 </section>
@@ -1308,7 +1308,7 @@ The exact error is -6.66134e-15.
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;x&#39;)
 </pre></div>
 </div>
-<img alt="_images/141af984a2e86783360df11fee53ce260e840c30f917bea1f90f63b07cc9d876.svg" src="_images/141af984a2e86783360df11fee53ce260e840c30f917bea1f90f63b07cc9d876.svg" /></div>
+<img alt="_images/b4d7434790130b56b0515a3b529aab81f409a2102da9d7dc62b7eb6144bd7ce5.svg" src="_images/b4d7434790130b56b0515a3b529aab81f409a2102da9d7dc62b7eb6144bd7ce5.svg" /></div>
 </div>
 </section>
 <section id="curve-fitting">
@@ -1354,13 +1354,13 @@ $<span class="math notranslate nohighlight">\(f(x,\vec{p}) = a \exp(-b x) + c, \
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal parameters are a=2.53856, b=1.39154, and c=0.515126
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal parameters are a=2.44533, b=1.2729, and c=0.511767
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb682caf610&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f1ebafbee10&gt;
 </pre></div>
 </div>
-<img alt="_images/5c6be303bf67e4ccc57f1140f1a0beb1b7f0462c16163c0063f39bdca364e633.svg" src="_images/5c6be303bf67e4ccc57f1140f1a0beb1b7f0462c16163c0063f39bdca364e633.svg" /></div>
+<img alt="_images/4112b8c1a1003e43799fa4289254c59a7c2599b21a52cdadc98fee43dfcf89fb.svg" src="_images/4112b8c1a1003e43799fa4289254c59a7c2599b21a52cdadc98fee43dfcf89fb.svg" /></div>
 </div>
 <p>Note that in the source code above we define the fitting function <span class="math notranslate nohighlight">\(y = f(x)\)</span> through Python code. We can thus fit (nearly) arbitrary functions using the <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> method.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> function returns a tuple <code class="docutils literal notranslate"><span class="pre">popt,</span> <span class="pre">pcov</span></code>. The first entry <code class="docutils literal notranslate"><span class="pre">popt</span></code> contains a tuple of the OPTimal Parameters (in the sense that these minimise equation ([eq:1]). The second entry contains the covariance matrix for all parameters. The diagonals provide the variance of the parameter estimations.</p>
@@ -1420,7 +1420,7 @@ $<span class="math notranslate nohighlight">\(f(x,\vec{p}) = a \exp(-b x) + c, \
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5e2b798cda0bda60e92bb2814001d99ac2376bb78434becbf00622551cf2726e.svg" src="_images/5e2b798cda0bda60e92bb2814001d99ac2376bb78434becbf00622551cf2726e.svg" /></div>
+<img alt="_images/0a2b25c50eca40ff516393eb536cbbe5d7425f8116e569a0de5f7bc214cbf595.svg" src="_images/0a2b25c50eca40ff516393eb536cbbe5d7425f8116e569a0de5f7bc214cbf595.svg" /></div>
 </div>
 <p>The lower plot shows the discrete Fourier transform computed from the data shown in the upper plot.</p>
 </section>
@@ -1482,10 +1482,10 @@ Optimization terminated successfully.
 Start search at x=2., minimum is [3.13847656]
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb682cb64d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f1eb8b04590&gt;
 </pre></div>
 </div>
-<img alt="_images/6ffaa470196da86b3132de64ce1fbd9b9461ec01b3878a072ce974914886d566.svg" src="_images/6ffaa470196da86b3132de64ce1fbd9b9461ec01b3878a072ce974914886d566.svg" /></div>
+<img alt="_images/0c4374235fe87aa35606f52a8f5f614235db0a73a553f580da6b0bd8a153e03d.svg" src="_images/0c4374235fe87aa35606f52a8f5f614235db0a73a553f580da6b0bd8a153e03d.svg" /></div>
 </div>
 <p>Calling the <code class="docutils literal notranslate"><span class="pre">fmin</span></code> function will produce some diagnostic output, which you can also see above.</p>
 <p><strong>Return value of <code class="docutils literal notranslate"><span class="pre">fmin</span></code></strong></p>
