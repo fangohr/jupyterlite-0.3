@@ -137,10 +137,10 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - uses: marvinpinto/action-automatic-releases@latest
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
-          title: "Development Build"
-          files: book/_build/latex/book.pdf
+      # - uses: marvinpinto/action-automatic-releases@latest
+      #   with:
+      #     repo_token: "${{ secrets.GITHUB_TOKEN }}"
+      #     automatic_release_tag: "latest"
+      #     title: "Development Build"
+      #     files: book/_build/latex/book.pdf
 
