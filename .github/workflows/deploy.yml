@@ -76,7 +76,7 @@ jobs:
           python -m pip install -r jupyterlite-sources/requirements.txt
       - name: Add notebooks to JupyterLite sources
         run: |
-          mkdir -p jupyterlite-output/content
+          mkdir -p jupyterlite-sources/content
           cp book/*ipynb jupyterlite-sources/content
           cp book/logo.png jupyterlite-sources/content
       - name: Build the JupyterLite site
