@@ -94,14 +94,14 @@ jobs:
 
   deploy:
     needs: [docker-build-jupyter-book, build-jupyterlite]
-    #if: github.ref == 'refs/heads/main'
-    #permissions:
-    #  pages: write
-    #  id-token: write
-    #
-    #environment:
-    #  name: github-pages
-    #  url: ${{ steps.deployment.outputs.page_url }}
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      pages: write
+      id-token: write
+    
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     runs-on: ubuntu-latest
     steps:
