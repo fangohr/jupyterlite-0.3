@@ -76,6 +76,11 @@ jobs:
           mkdir -p jupyterlite-output/content
           jupyter lite build --contents jupyterlite-sources/content --output-dir jupyterlite-output/jlite
 
+      - name: upload jupyterlite artefact
+        uses: actions/upload-artifact@master
+        with:
+          name: jupyterlite-output
+          path: jupyterlite-output
 
 #      - name: Upload artifact
 #        uses: actions/upload-pages-artifact@v3
@@ -95,6 +100,13 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
+      - name: download jupyterlite-output artifact
+        uses: actions/download-artifact@master
+        with:
+          name: jupyterlite-output
+          path: jupyterlite-output
+    
+
       - name: gather-outputs
         run: |
           mkdir -p pages
