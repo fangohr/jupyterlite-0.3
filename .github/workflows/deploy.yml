@@ -74,11 +74,15 @@ jobs:
       - name: Install the dependencies
         run: |
           python -m pip install -r jupyterlite-sources/requirements.txt
+      - name: Add notebooks to JupyterLite sources
+        run: |
+          mkdir -p jupyterlite-output/content
+          cp book/*ipynb jupyterlite-sources/content
+          cp book/logo.png jupyterlite-sources/content
       - name: Build the JupyterLite site
         run: |
           # mkdir -p jupyterlite # root output directory
           mkdir -p jupyterlite-output/jlite  # root directory for Jupyter lite
-          mkdir -p jupyterlite-output/content
           jupyter lite build --contents jupyterlite-sources/content --output-dir jupyterlite-output/jlite
 
       - name: upload jupyterlite artefact
